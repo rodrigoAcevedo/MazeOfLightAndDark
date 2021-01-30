@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TileFogOfWar : MonoBehaviour
 {
-
-    private Color darkTileColor = new Color(0f, 0f, 0f, 1f);
+    [SerializeField]
+    private Color darkTileColor;
 
     private Tile[] childrenTiles;
     public List<GameObject> tiles;
@@ -20,16 +20,15 @@ public class TileFogOfWar : MonoBehaviour
             tiles.Add(tile.gameObject);
         }
 
+        DarknenLevelStart();
+    }
+
+    void DarknenLevelStart()
+    {
         // Set to dark
-        foreach(GameObject tile in tiles)
+        foreach (GameObject tile in tiles)
         {
             tile.GetComponent<SpriteRenderer>().color = darkTileColor;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
