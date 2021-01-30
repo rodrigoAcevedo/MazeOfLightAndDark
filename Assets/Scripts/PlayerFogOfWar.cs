@@ -6,7 +6,7 @@ public class PlayerFogOfWar : MonoBehaviour
 {
     private RaycastHit2D[] hit;
     private int frames;
-    private int scenarioLayerMask = 8;
+    private LayerMask scenarioLayerMask;
 
     [SerializeField]
     private float innerRadius;
@@ -14,6 +14,7 @@ public class PlayerFogOfWar : MonoBehaviour
     private void Awake()
     {
         frames = 0;
+        scenarioLayerMask = LayerMask.GetMask("Scenario");
     }
 
 
@@ -24,7 +25,7 @@ public class PlayerFogOfWar : MonoBehaviour
         {
             frames = 0;
 
-            hit = Physics2D.CircleCastAll(transform.position, 2f, new Vector2(0, 0), 3f);
+            hit = Physics2D.CircleCastAll(transform.position, 2f, new Vector2(0, 0), 3f, scenarioLayerMask);
 
             foreach (var tile in hit)
             {
