@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player_movement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
 
-    public int movement_speed;
+    public int movementSpeed;
     private Rigidbody2D RB2D;
     private Vector2 movement;
         
@@ -22,20 +22,20 @@ public class player_movement : MonoBehaviour
         movement = new Vector2(0, 0);
         if (Input.GetKey(KeyCode.S))
         {
-            movement.y = movement_speed * -1;
+            movement.y = movementSpeed * -1;
         }
         if (Input.GetKey(KeyCode.W))
         {
-            movement.y = movement_speed;
+            movement.y = movementSpeed;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            movement.x = movement_speed * -1;
+            movement.x = movementSpeed * -1;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            movement.x = movement_speed;
+            movement.x = movementSpeed;
         }
     }
 
