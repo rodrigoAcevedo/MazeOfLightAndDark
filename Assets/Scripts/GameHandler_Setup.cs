@@ -7,6 +7,7 @@ public class GameHandler_Setup : MonoBehaviour
     private void Awake()
     {
         SoundManager.Initialize();
+        SoundManager.PlayMusic(SoundManager.Music.InGame);
     }
 
     // Start is called before the first frame update
