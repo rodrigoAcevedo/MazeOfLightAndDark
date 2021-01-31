@@ -10,11 +10,56 @@ public class SoundManager
         BumpWall,
     }
 
+    private static Dictionary<Sound, float> soundTimerDictionary;
+    private static GameObject oneShotGameObject;
+    private static AudioSource oneShotAudioSource;
+
+    public static void Initialize()
+    {
+        soundTimerDictionary = new Dictionary<Sound, float>();
+        soundTimerDictionary[Sound.PlayerMove] = 0f;
+    }
+
     public static void PlaySound(Sound sound)
     {
-        GameObject soundGameObject = new GameObject("Sound");
-        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-        audioSource.PlayOneShot(GetAudioClip(sound));
+        if(CanPlaySound(sound))
+        {
+            if(oneShotGameObject == null)
+            {
+                oneShotGameObject = new GameObject("Sound");
+                oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
+
+            }
+            oneShotAudioSource.PlayOneShot(GetAudioClip(sound));
+        }
+    }
+
+    private static bool CanPlaySound(Sound sound)
+    {
+        switch (sound)
+        {
+            default:
+                return true;
+            case Sound.PlayerMove:
+                if (soundTimerDictionary.ContainsKey(sound))
+                {
+                    float lastTimePlayed = soundTimerDictionary[sound];
+                    float playerMoveTimerMax = 0.5f;//GetAudioClip(sound).length;
+                    if (lastTimePlayed + playerMoveTimerMax < Time.time)
+                    {
+                        soundTimerDictionary[sound] = Time.time;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return true;
+                }
+        }
     }
 
     private static AudioClip GetAudioClip(Sound sound)

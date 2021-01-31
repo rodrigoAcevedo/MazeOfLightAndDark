@@ -40,11 +40,11 @@ public class PlayerMovementGrid : MonoBehaviour
                 movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
             }
             anim.SetBool("IsMoving", false);
-            SoundManager.PlaySound(SoundManager.Sound.PlayerMove);
         }
         else
         {
             anim.SetBool("IsMoving", true);
+            SoundManager.PlaySound(SoundManager.Sound.PlayerMove);
         }
     }
 
