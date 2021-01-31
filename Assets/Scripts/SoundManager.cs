@@ -15,6 +15,7 @@ public class SoundManager
     {
         Theme,
         InGame,
+        Victory,
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;
@@ -90,6 +91,11 @@ public class SoundManager
 
     public static void PlayMusic(Music music)
     {
+        PlayMusic(music, true);
+    }
+
+    public static void PlayMusic(Music music, bool playLoop)
+    {
         if (musicGameObject == null)
         {
             musicGameObject = new GameObject("Music");
@@ -99,7 +105,7 @@ public class SoundManager
         GameAssets.MusicClip musicClip = GetMusicClip(music);
         musicAudioSource.clip = musicClip.audioClip;
         musicAudioSource.volume = musicClip.volume;
-        musicAudioSource.loop = true;
+        musicAudioSource.loop = playLoop;
         musicAudioSource.Play();
     }
 
@@ -107,7 +113,7 @@ public class SoundManager
     {
         foreach (GameAssets.MusicClip clip in GameAssets.i.musicClips)
         {
-            if (clip.music == music)
+            if(clip.music == music)
             {
                 return clip;
             }

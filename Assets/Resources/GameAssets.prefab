@@ -60,3 +60,6 @@ MonoBehaviour:
   - music: 1
     audioClip: {fileID: 8300000, guid: c010fbebaa1ad844493d1ee64e62b715, type: 3}
     volume: 0.5
+  - music: 2
+    audioClip: {fileID: 8300000, guid: 5cbd1a1e568e2894fb1dfd9e37bd23ee, type: 3}
+    volume: 0.5
