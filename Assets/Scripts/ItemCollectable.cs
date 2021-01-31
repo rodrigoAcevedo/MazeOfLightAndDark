@@ -20,10 +20,10 @@ public class ItemCollectable : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Inventory>().key = true;
-            collision.gameObject.GetComponent<Inventory>().keyIcon.enabled = true;
+            //collision.gameObject.GetComponent<Inventory>().key = true;
+            //collision.gameObject.GetComponent<Inventory>().keyIcon.enabled = true;
 
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
     }
 }

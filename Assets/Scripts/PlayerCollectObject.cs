@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCollectObject : MonoBehaviour
 {
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +18,5 @@ public class PlayerCollectObject : MonoBehaviour
         
     }
 
-   
+
 }
