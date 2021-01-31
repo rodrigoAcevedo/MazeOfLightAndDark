@@ -45,4 +45,9 @@ public class PlayerMovement : MonoBehaviour
         RB2D.velocity = movement;
 
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
+    }
 }
