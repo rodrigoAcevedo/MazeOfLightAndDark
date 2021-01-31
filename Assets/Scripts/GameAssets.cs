@@ -16,11 +16,23 @@ public class GameAssets : MonoBehaviour
     }
 
     public SoundAudioClip[] soundAudioClips;
+    public MusicClip[] musicClips;
 
     [System.Serializable]
     public class SoundAudioClip
     {
         public SoundManager.Sound sound;
         public AudioClip audioClip;
+        [Range(0,1)]
+        public float volume;
+    }
+
+    [System.Serializable]
+    public class MusicClip
+    {
+        public SoundManager.Music music;
+        public AudioClip audioClip;
+        [Range(0,1)]
+        public float volume;
     }
 }

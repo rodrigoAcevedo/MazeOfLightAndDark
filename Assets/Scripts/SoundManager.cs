@@ -10,9 +10,19 @@ public class SoundManager
         BumpWall,
     }
 
+    public enum Music
+    {
+        Theme,
+        InGame,
+    }
+
     private static Dictionary<Sound, float> soundTimerDictionary;
-    private static GameObject oneShotGameObject;
-    private static AudioSource oneShotAudioSource;
+    private static GameObject sfxGameObject;
+    private static AudioSource sfxAudioSource;
+    private static GameObject musicGameObject;
+    private static AudioSource musicAudioSource;
+    private static AudioSource musicAudioSource2;
+
 
     public static void Initialize()
     {
@@ -24,13 +34,14 @@ public class SoundManager
     {
         if(CanPlaySound(sound))
         {
-            if(oneShotGameObject == null)
+            if(sfxGameObject == null)
             {
-                oneShotGameObject = new GameObject("Sound");
-                oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
+                sfxGameObject = new GameObject("Sound");
+                sfxAudioSource = sfxGameObject.AddComponent<AudioSource>();
 
             }
-            oneShotAudioSource.PlayOneShot(GetAudioClip(sound));
+            GameAssets.SoundAudioClip soundAudioClip = GetAudioClip(sound);
+            sfxAudioSource.PlayOneShot(soundAudioClip.audioClip, soundAudioClip.volume);
         }
     }
 
@@ -62,16 +73,42 @@ public class SoundManager
         }
     }
 
-    private static AudioClip GetAudioClip(Sound sound)
+    private static GameAssets.SoundAudioClip GetAudioClip(Sound sound)
     {
         foreach (GameAssets.SoundAudioClip soundAudioClip in GameAssets.i.soundAudioClips)
         {
             if(soundAudioClip.sound == sound)
             {
-                return soundAudioClip.audioClip;
+                return soundAudioClip;
             }
         }
         Debug.LogError("Sound " + sound + " not found!");
+        return null;
+    }
+
+
+    public static void PlayMusic(Music music)
+    {
+        if (musicGameObject == null)
+        {
+            musicGameObject = new GameObject("Music");
+            musicAudioSource = musicGameObject.AddComponent<AudioSource>();
+
+        }
+        GameAssets.MusicClip musicClip = GetMusicClip(music);
+        musicAudioSource.clip = musicClip.audioClip;
+        musicAudioSource.volume = musicClip.volume;
+        musicAudioSource.loop = true;
+        musicAudioSource.Play();
+    }
+
+    private static GameAssets.MusicClip GetMusicClip(Music music)
+    {
+        foreach (GameAssets.MusicClip clip in GameAssets.i.musicClips)
+        {
+            return clip;
+        }
+        Debug.LogError("Music " + music + " not found!");
         return null;
     }
 }
