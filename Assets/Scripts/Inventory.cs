@@ -58,12 +58,14 @@ public class Inventory : MonoBehaviour
             key1 = true;
             key1Icon.enabled = true;
             Destroy(collision.gameObject);
+            SoundManager.PlaySound(SoundManager.Sound.PickUpItem);
         }
         if (collision.gameObject.name == "Key2")
         {
             key2 = true;
             key2Icon.enabled = true;
             Destroy(collision.gameObject);
+            SoundManager.PlaySound(SoundManager.Sound.PickUpItem);
 
         }
         if (collision.gameObject.name == "Key3")
@@ -71,6 +73,7 @@ public class Inventory : MonoBehaviour
             key3 = true;
             key3Icon.enabled = true;
             Destroy(collision.gameObject);
+            SoundManager.PlaySound(SoundManager.Sound.PickUpItem);
 
         }
 
@@ -79,6 +82,7 @@ public class Inventory : MonoBehaviour
             diamond = true;
             diamongIcon.enabled = true;
             Destroy(collision.gameObject);
+            SoundManager.PlaySound(SoundManager.Sound.PickUpItem);
 
         }
     }
