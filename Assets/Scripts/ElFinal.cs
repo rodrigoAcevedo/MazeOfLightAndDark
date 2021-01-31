@@ -17,6 +17,9 @@ public class ElFinal : MonoBehaviour
     public GameObject chest;
     public Transform chestSlot;
 
+
+    public GameObject[] traps;
+
     public TextAsset winText;
 
 
@@ -48,6 +51,8 @@ public class ElFinal : MonoBehaviour
                 level.color = newColor;
             }
 
+            
+
             Vector2 cameraPosition = mainCamera.transform.position;
             Vector2 playerPosition = player.transform.position;
             if(cameraPosition != playerPosition)
@@ -68,12 +73,12 @@ public class ElFinal : MonoBehaviour
 
             if (sword.transform != swordSlot.transform)
             {
-                sword.transform.position = Vector3.MoveTowards(sword.transform.position, swordSlot.transform.position, 1f * Time.deltaTime);
+                sword.transform.position = Vector3.MoveTowards(sword.transform.position, swordSlot.transform.position, 1.5f * Time.deltaTime);
             }
 
             if (diamond.transform != diamondSlot.transform)
             {
-                diamond.transform.position = Vector3.MoveTowards(diamond.transform.position, diamondSlot.transform.position, 1f * Time.deltaTime);
+                diamond.transform.position = Vector3.MoveTowards(diamond.transform.position, diamondSlot.transform.position, 1.5f * Time.deltaTime);
             }
         }
     }
@@ -86,7 +91,11 @@ public class ElFinal : MonoBehaviour
         {
             endingStarted = true;
             SoundManager.PlayMusic(SoundManager.Music.Victory, false);
-            playerMovement.enabled = false;
+            playerMovement.DisableMovement();
+            foreach (GameObject trap in traps)
+            {
+                trap.SetActive(false);
+            }
         }
     }
 }

@@ -9,6 +9,8 @@ public class PlayerMovementGrid : MonoBehaviour
 
     public Animator anim;
 
+    bool deactivateMovement = false;
+    bool movementOff = false;
 
 
     private Vector3 currentPoint;
@@ -31,15 +33,22 @@ public class PlayerMovementGrid : MonoBehaviour
                 currentPoint = movePoint.position;
             }
 
-            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
+            if(!movementOff)
             {
-                movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+                if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
+                {
+                    movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+                }
+                else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+                {
+                    movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                }
+                anim.SetBool("IsMoving", false);
+                if (deactivateMovement == true)
+                {
+                    movementOff = true;
+                }
             }
-            else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
-            {
-                movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
-            }
-            anim.SetBool("IsMoving", false);
         }
         else
         {
@@ -67,5 +76,10 @@ public class PlayerMovementGrid : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
         currentPoint = transform.position;
         movePoint.position = transform.position;
+    }
+
+    public void DisableMovement()
+    {
+        deactivateMovement = true;
     }
 }
