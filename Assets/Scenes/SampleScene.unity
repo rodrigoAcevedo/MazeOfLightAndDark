@@ -1268,7 +1268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fogOfWar: {fileID: 924563042}
-  innerRadius: 1.5
+  innerRadius: 1
   grayCellColor: {r: 0, g: 0, b: 0, a: 0.3764706}
   lightCellColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &924563039
@@ -2360,12 +2360,12 @@ PrefabInstance:
     - target: {fileID: 2503582763597392747, guid: 77c910bcd51a5284b88783a691ca615e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.49
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2503582763597392747, guid: 77c910bcd51a5284b88783a691ca615e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.51
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2503582763597392747, guid: 77c910bcd51a5284b88783a691ca615e,
         type: 3}
