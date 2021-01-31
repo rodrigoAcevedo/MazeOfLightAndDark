@@ -10,7 +10,11 @@ public class PlayerFogOfWar : MonoBehaviour
     public Tilemap fogOfWar;
 
     [SerializeField]
-    private float innerRadius;
+    private int innerRadius;
+    [SerializeField]
+    private int outerRadius;
+    [SerializeField]
+    private Color darkCellColor;
     [SerializeField]
     private Color grayCellColor;
     [SerializeField]
@@ -20,6 +24,7 @@ public class PlayerFogOfWar : MonoBehaviour
     {
         frames = 0;
 
+        darkCellColor = new Color(1f, 1f, 1f, 1f);
         grayCellColor = new Color(1f, 1f, 1f, 0.5f);
         lightCellColor = new Color(1f, 1f, 1f, 0f);
 
@@ -39,31 +44,45 @@ public class PlayerFogOfWar : MonoBehaviour
         {
             frames = 0;
 
-            hit = TileCircleCast(transform.position);
+            ApplyDarkness();
+
+            hit = TileCircleCast(transform.position, outerRadius);
 
             if (hit.Count > 0)
             {
                 foreach (Vector3Int tile in hit)
                 {
-                    Vector3 dis = transform.position - (Vector3)tile;
-                    if (dis.x > innerRadius || dis.x < -innerRadius || dis.y > innerRadius || dis.y < -innerRadius)
                     {
                         fogOfWar.SetColor(tile, grayCellColor);
                     }
-                    else
-                    {
-                        fogOfWar.SetColor(tile, lightCellColor);
-                    }
+                }
+            }
+
+            hit = TileCircleCast(transform.position, innerRadius);
+            if (hit.Count > 0)
+            {
+                foreach (Vector3Int tile in hit)
+                {
+                    fogOfWar.SetColor(tile, lightCellColor);
                 }
             }
         }
     }
 
-    List<Vector3Int> TileCircleCast(Vector3 pos)
+    private void ApplyDarkness()
     {
-        int radius = 2;
-        pos.x = Mathf.CeilToInt(pos.x);
-        pos.y = Mathf.CeilToInt(pos.y);
+        foreach (var tile in fogOfWar.cellBounds.allPositionsWithin)
+        {
+            Vector3Int localPlace = new Vector3Int(tile.x, tile.y, tile.z);
+            fogOfWar.SetColor(localPlace, darkCellColor);
+        }
+    }
+
+    List<Vector3Int> TileCircleCast(Vector3 pos, int radius)
+    {
+        //int radius = 2;
+        //pos.x = Mathf.CeilToInt(pos.x);
+        //pos.y = Mathf.CeilToInt(pos.y);
 
         int leftOffset = (int)Mathf.Floor(pos.x - radius);
         int rightOffset = (int)Mathf.Ceil(pos.x + radius);
