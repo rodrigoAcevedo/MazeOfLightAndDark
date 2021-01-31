@@ -7,7 +7,6 @@ public class PlayerFogOfWar : MonoBehaviour
 {
     private List<Vector3Int> hit;
     private int frames;
-    private LayerMask scenarioLayerMask;
     public Tilemap fogOfWar;
 
     [SerializeField]
@@ -20,7 +19,6 @@ public class PlayerFogOfWar : MonoBehaviour
     private void Awake()
     {
         frames = 0;
-        scenarioLayerMask = LayerMask.GetMask("Scenario");
 
         grayCellColor = new Color(1f, 1f, 1f, 0.5f);
         lightCellColor = new Color(1f, 1f, 1f, 0f);
