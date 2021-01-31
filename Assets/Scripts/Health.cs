@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+<<<<<<< Updated upstream
+=======
+
+    public int healthLevel;
+
+>>>>>>> Stashed changes
     // Start is called before the first frame update
     void Start()
     {
@@ -15,4 +21,15 @@ public class Health : MonoBehaviour
     {
         
     }
+<<<<<<< Updated upstream
+=======
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "dangerous") 
+        {
+            healthLevel -= 1;
+        }
+    }
+>>>>>>> Stashed changes
 }
