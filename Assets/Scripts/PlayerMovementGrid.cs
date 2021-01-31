@@ -51,9 +51,10 @@ public class PlayerMovementGrid : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Play bump sound
+        
+        movePoint.position = currentPoint;
         if (collision.gameObject.tag != "teleport")
         {
-            movePoint.position = currentPoint;
             SoundManager.PlaySound(SoundManager.Sound.BumpWall);
             Debug.Log("hit a wall");
         }
