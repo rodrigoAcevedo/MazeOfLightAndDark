@@ -51,8 +51,20 @@ public class PlayerMovementGrid : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Play bump sound
-        movePoint.position = currentPoint;
-        SoundManager.PlaySound(SoundManager.Sound.BumpWall);
-        Debug.Log("hit a wall");
+        if (collision.gameObject.tag != "teleport")
+        {
+            movePoint.position = currentPoint;
+            SoundManager.PlaySound(SoundManager.Sound.BumpWall);
+            Debug.Log("hit a wall");
+        }
+    }
+
+    public void ResetZAxis()
+    {
+        // Todo esto es horrible pero necesario
+        anim.SetBool("IsMoving", false);
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+        currentPoint = transform.position;
+        movePoint.position = transform.position;
     }
 }
