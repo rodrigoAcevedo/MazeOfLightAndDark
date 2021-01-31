@@ -28,6 +28,23 @@ public class Inventory : MonoBehaviour
         diamongIcon.enabled = false;
     }
 
+    public bool HasKey(Key keyId)
+    {
+        switch(keyId)
+        {
+            case Key.Key1:
+                return key1;
+            case Key.Key2:
+                return key2;
+            case Key.Key3:
+                return key3;
+            case Key.Free:
+                return true;
+            default:
+                return false;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
