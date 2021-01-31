@@ -57,15 +57,6 @@ public class PlayerMovementGrid : MonoBehaviour
             SoundManager.PlaySound(SoundManager.Sound.BumpWall);
             Debug.Log("hit a wall");
         }
-        else
-        {
-            /*anim.SetBool("IsMoving", false);
-            // hack necesario
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
-            Debug.Log("TitologA");
-            currentPoint = transform.position;
-            movePoint.position = transform.position;*/
-        }
     }
 
     public void ResetZAxis()
