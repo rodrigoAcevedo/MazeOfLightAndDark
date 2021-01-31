@@ -107,7 +107,10 @@ public class SoundManager
     {
         foreach (GameAssets.MusicClip clip in GameAssets.i.musicClips)
         {
-            return clip;
+            if (clip.music == music)
+            {
+                return clip;
+            }
         }
         Debug.LogError("Music " + music + " not found!");
         return null;
