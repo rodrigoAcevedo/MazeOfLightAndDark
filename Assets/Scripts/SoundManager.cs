@@ -8,6 +8,7 @@ public class SoundManager
     {
         PlayerMove,
         BumpWall,
+        PickUpItem,
     }
 
     public enum Music
