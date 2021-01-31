@@ -66,10 +66,7 @@ public class Inventory : MonoBehaviour
             key2Icon.enabled = true;
             Destroy(collision.gameObject);
             SoundManager.PlaySound(SoundManager.Sound.PickUpItem);
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
         }
         if (collision.gameObject.name == "Key3")
         {
@@ -77,10 +74,7 @@ public class Inventory : MonoBehaviour
             key3Icon.enabled = true;
             Destroy(collision.gameObject);
             SoundManager.PlaySound(SoundManager.Sound.PickUpItem);
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
         }
 
         if (collision.gameObject.name == "Diamond")
@@ -89,10 +83,7 @@ public class Inventory : MonoBehaviour
             diamongIcon.enabled = true;
             Destroy(collision.gameObject);
             SoundManager.PlaySound(SoundManager.Sound.PickUpItem);
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
         }
     }
 }
