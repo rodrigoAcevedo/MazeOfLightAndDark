@@ -22,7 +22,6 @@ public class ElFinal : MonoBehaviour
 
 
     private PlayerMovementGrid playerMovement;
-    private PlayerFogOfWar fogOfWar;
 
     private bool endingStarted = false;
     private float transparency = 0f;
@@ -30,7 +29,6 @@ public class ElFinal : MonoBehaviour
     private void Awake()
     {
         playerMovement = player.GetComponent<PlayerMovementGrid>();
-        fogOfWar = player.GetComponent<PlayerFogOfWar>();
     }
 
     // Start is called before the first frame update
@@ -88,6 +86,7 @@ public class ElFinal : MonoBehaviour
         {
             endingStarted = true;
             SoundManager.PlayMusic(SoundManager.Music.Victory, false);
+            playerMovement.enabled = false;
         }
     }
 }
